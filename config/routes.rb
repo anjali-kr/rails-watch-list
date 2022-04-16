@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   # A user can create a new list
   # GET "lists/new"
   # POST "lists"
-  resources :lists, only: [:index, :show, :new, :create]
+  resources :lists, only: [:index, :show, :new, :create] do
+    resources :bookmarks, only: [:new, :create, :destroy]
+  end
 
   # A user can add a new bookmark (movie/list pair) to an existing list
   # get "lists/:list_id/bookmarks/new", to: 'bookmarks#new'
-  # post "lists/:list_id/bookmarks", to: 'bookmarks/create'
+  # post "lists/:list_id/bookmarks", to: 'bookmarks#create', as: 'list_bookmarks'
   # # A user can delete a bookmark from a list. How can we make a delete link again?
   # delete 'bookmarks/:id', to: 'bookmarks#destroy'
 end
