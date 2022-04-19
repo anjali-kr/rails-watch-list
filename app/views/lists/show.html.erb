@@ -8,6 +8,7 @@
 <div class="container mt-5">
   <% @list.bookmarks.each do |bookmark| %>
     <p><%= bookmark.movie.title %>
+
     <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, bookmark_path(bookmark), method: :delete,
       data: { confirm: 'Are you sure?' } %>
     </p>
