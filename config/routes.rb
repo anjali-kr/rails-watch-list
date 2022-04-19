@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   # GET "lists/new"
   # POST "lists"
   resources :lists, only: [:index, :show, :new, :create] do
-    resources :bookmarks, only: [:new, :create, :destroy]
+    resources :bookmarks, only: [:new, :create]
   end
+  resources :bookmarks, only: [:destroy]
 
   # A user can add a new bookmark (movie/list pair) to an existing list
   # get "lists/:list_id/bookmarks/new", to: 'bookmarks#new'

@@ -1,7 +1,16 @@
-<h1><%= @list.name %></h1>
-<p><%= @list.movies.count %> movies</p>
-<hr>
-<% @list.movies.each do |movie| %>
-  <p><%= movie.title %></p>
-<% end %>
-<%= link_to '+ Add a movie to this list'.html_safe, new_list_bookmark_path(@list) %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/dTLlhgeEJWg/1600x800);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+    <p><%= @list.bookmarks.count %> movies</p>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <% @list.bookmarks.each do |bookmark| %>
+    <p><%= bookmark.movie.title %>
+    <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, bookmark_path(bookmark), method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+  <%= link_to '+ Add a movie to this list'.html_safe, new_list_bookmark_path(@list) %>
+</div>
