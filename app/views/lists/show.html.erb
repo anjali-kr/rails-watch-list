@@ -4,7 +4,7 @@
     <p><%= @list.bookmarks.count %> movies</p>
   </div>
 </div>
-
+<!--
 <div class="container mt-5">
   <% @list.bookmarks.each do |bookmark| %>
     <p><%= bookmark.movie.title %>
@@ -14,4 +14,64 @@
     </p>
   <% end %>
   <%= link_to '+ Add a movie to this list'.html_safe, new_list_bookmark_path(@list) %>
+</div>
+-->
+<%= link_to '+ Add a movie to this list'.html_safe, new_list_bookmark_path(@list) %>
+<!--
+<div class="row  row-cols-md-3 g-4">
+  <% @list.bookmarks.each do |bookmark| %>
+			<div class = "rounded mx-auto d-block">
+      <div class="col">
+        <div class="card h-50">
+  				<%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, class: "img-thumbnail", :size => "100%"  %>
+           <div class="card-body">
+           <div class="d-flex justify-content-between">
+              <p><strong> <%= bookmark.movie.title %> </strong></p>
+              <p><strong> <%= bookmark.movie.rating %></strong></p>
+            </div><br>
+            <%= bookmark.movie.overview %><br>
+            <small><%= bookmark.comment %></small>
+           <%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list"}, class: 'text-danger' %>
+         </div>
+       </div>
+     </div>
+    </div>
+  <% end %>
+</div>
+-->
+
+
+<!-- Banner with Title -->
+
+
+<div class="container">
+  <div class="row">
+
+
+
+        <% @list.bookmarks.each do |bookmark| %>
+            <div class="card-trip col-3 m-2">
+              <img src="<%= bookmark.movie.poster_url %>" />
+              <div class="card-trip-infos">
+                <div>
+                  <h2>
+                  <%= bookmark.movie.title %>
+                  </h2>
+                  <p><%= truncate(bookmark.movie.overview, :length => 200, :omission => ' ...') %></p>
+                  <hr>
+                  <p><strong>Comment: </strong><%= bookmark.comment%></p>
+                  <p><%= link_to 'Delete', bookmark_path(bookmark), method: :delete, data: {confirm: "Are you sure?"} %></p>
+                </div>
+                <h2 class="card-trip-pricing"><%= bookmark.movie.rating %>/10</h2>
+
+              </div>
+            </div>
+        <% end %>
+
+
+
+
+
+
+  </div>
 </div>

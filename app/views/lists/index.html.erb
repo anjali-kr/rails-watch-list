@@ -13,7 +13,7 @@
 
   <div class="row">
     <% @lists.each do |list| %>
-    <div class="col-4">
+    <div class="col-12 col-md-4">
       <%=  link_to list_path(list) do%>
       <div class="card-category mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://source.unsplash.com/RM-5zzFsR2I/800x500)">
         <%= list.name %>
@@ -22,6 +22,4 @@
     </div>
     <% end %>
   </div>
-
-
 </div>
